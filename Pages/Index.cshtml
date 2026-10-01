@@ -1,0 +1,125 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Plan your rooms";
+}
+
+<section class="hero">
+    <div class="container-xl hero-grid">
+        <div>
+            <p class="eyebrow">Interactive house planning</p>
+            <h1>Build My Home</h1>
+            <p class="lead">Explore sample layouts, arrange furniture on a 2D grid, compare materials, and estimate paint, tiles, and flooring — then keep a copy of your plan in this browser.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" asp-page="/Planner">Open the room planner</a>
+                <a class="btn btn-ghost" asp-page="/Designs">Browse house designs</a>
+            </div>
+            <p class="hero-note">No account. No database. Export JSON whenever you want a backup.</p>
+        </div>
+        <div class="hero-panel" aria-hidden="true">
+            <div class="hero-plan">
+                <span class="hero-room r1">Living</span>
+                <span class="hero-room r2">Kitchen</span>
+                <span class="hero-room r3">Bed</span>
+                <span class="hero-room r4">Bath</span>
+            </div>
+            <ul class="hero-stats">
+                <li><strong>8</strong> sample layouts</li>
+                <li><strong>2D</strong> furniture grid</li>
+                <li><strong>JSON</strong> content files</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<partial name="_Disclaimer" />
+
+<section class="section">
+    <div class="container-xl">
+        <div class="section-head">
+            <h2>What you can do</h2>
+            <p>Work room by room: dimensions, furniture, finishes, quantities, and a simple budget using your local prices.</p>
+        </div>
+        <div class="feature-grid">
+            <a class="feature-card" asp-page="/Designs">
+                <h3>House design library</h3>
+                <p>Studio, one-bedroom, two-bedroom, and larger sample layouts with dimensions and descriptions.</p>
+            </a>
+            <a class="feature-card" asp-page="/Planner">
+                <h3>Room planner</h3>
+                <p>Place furniture on a scaled grid and see how much floor remains once pieces are in.</p>
+            </a>
+            <a class="feature-card" asp-page="/Materials">
+                <h3>Material explorer</h3>
+                <p>Compare flooring, paint, roofing, and countertops by look, upkeep, and durability.</p>
+            </a>
+            <a class="feature-card" asp-page="/Calculators">
+                <h3>Quantity calculators</h3>
+                <p>Estimate paint litres, tile counts, and flooring packs from room measurements.</p>
+            </a>
+            <a class="feature-card" asp-page="/Budget">
+                <h3>Budget planner</h3>
+                <p>Type local prices to roll estimated costs by room. Suggested figures are only a starting point.</p>
+            </a>
+            <a class="feature-card" asp-page="/Styles">
+                <h3>Style gallery</h3>
+                <p>Modern, traditional, minimalist, and industrial palettes you can attach to your plan.</p>
+            </a>
+            <a class="feature-card" asp-page="/Checklist">
+                <h3>Project checklist</h3>
+                <p>Track planning, purchases, and decorating without creating an account.</p>
+            </a>
+            <a class="feature-card" asp-page="/Report">
+                <h3>Downloadable report</h3>
+                <p>Export selected styles, measurements, quantities, and estimated costs as HTML or JSON.</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section section-tint">
+    <div class="container-xl">
+        <div class="section-head">
+            <h2>Start from a layout</h2>
+            <a asp-page="/Designs">View all designs</a>
+        </div>
+        <div class="card-grid">
+            @foreach (var house in Model.Featured)
+            {
+                <article class="design-card">
+                    @await Html.PartialAsync("_FloorPlan", house)
+                    <div class="design-card-body">
+                        <p class="tag">@house.Category · @house.TotalAreaSqm m²</p>
+                        <h3>@house.Name</h3>
+                        <p>@house.Tagline</p>
+                        <a class="text-link" asp-page="/DesignDetail" asp-route-id="@house.Id">Open layout</a>
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container-xl">
+        <div class="section-head">
+            <h2>Interior styles</h2>
+            <a asp-page="/Styles">Style gallery</a>
+        </div>
+        <div class="style-row">
+            @foreach (var style in Model.Styles)
+            {
+                <article class="style-chip">
+                    <div class="palette">
+                        @foreach (var colour in style.Palette)
+                        {
+                            <span style="background:@colour"></span>
+                        }
+                    </div>
+                    <h3>@style.Name</h3>
+                    <p>@style.Summary</p>
+                </article>
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,66 @@
+@page
+@using System.Text.Json
+@model BudgetModel
+@{
+    ViewData["Title"] = "Budget planner";
+}
+
+<div class="page-hero">
+    <div class="container-xl">
+        <p class="eyebrow">Local prices</p>
+        <h1>Budget planner</h1>
+        <p class="lead">Saved rooms from the planner appear here. Enter what you would actually pay nearby. Suggested catalogue prices are only a prompt.</p>
+    </div>
+</div>
+
+<div class="container-xl section">
+    <div class="panel">
+        <h2>Price book</h2>
+        <p class="muted">Paint is per litre. Flooring and tiles are per square metre (including the waste already in the estimate).</p>
+        <div class="price-grid" id="price-grid">
+            @foreach (var material in Model.Materials.Where(m => m.Category is "paint" or "flooring"))
+            {
+                <label>@material.Name
+                    <input class="form-control price-input" data-id="@material.Id" data-suggested="@material.SuggestedPrice" type="number" min="0" step="0.01" value="@material.SuggestedPrice" />
+                    <small>Suggested @material.SuggestedPrice / @(material.Unit)</small>
+                </label>
+            }
+            <label>Tiles (per m²)
+                <input class="form-control price-input" data-id="tiles" data-suggested="45" type="number" min="0" step="0.01" value="45" />
+                <small>Use this when you are tiling rather than boarding</small>
+            </label>
+        </div>
+        <button type="button" class="btn btn-primary" id="recalc-budget">Recalculate rooms</button>
+    </div>
+
+    <div class="table-wrap mt-4">
+        <table class="data-table" id="budget-table">
+            <thead>
+                <tr>
+                    <th>Room</th>
+                    <th>Size</th>
+                    <th>Paint</th>
+                    <th>Flooring</th>
+                    <th>Paint cost</th>
+                    <th>Floor cost</th>
+                    <th>Tile cost (alt.)</th>
+                    <th>Room total</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="7">Plan total</th>
+                    <th id="budget-total">0.00</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <p class="muted" id="budget-empty">No rooms saved yet. Use the room planner, then return here.</p>
+</div>
+
+<script type="application/json" id="budget-materials">@Html.Raw(JsonSerializer.Serialize(Model.Materials, AppJson.Camel))</script>
+
+@section Scripts {
+    <script src="~/js/budget.js" asp-append-version="true"></script>
+}

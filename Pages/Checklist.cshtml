@@ -1,0 +1,37 @@
+@page
+@model ChecklistPageModel
+@{
+    ViewData["Title"] = "Project checklist";
+}
+
+<div class="page-hero">
+    <div class="container-xl">
+        <p class="eyebrow">Planning · purchases · decorating</p>
+        <h1>Project checklist</h1>
+        <p class="lead">Ticks are stored in this browser with the rest of your plan. Export JSON if you need the same list on another device.</p>
+    </div>
+</div>
+
+<div class="container-xl section">
+    <p class="progress-line">Progress: <strong id="check-progress">0 / @Model.Items.Count</strong></p>
+    @foreach (var phase in Model.Phases)
+    {
+        <section class="panel checklist-phase">
+            <h2>@phase</h2>
+            @foreach (var item in Model.Items.Where(i => i.Phase == phase))
+            {
+                <label class="check-item">
+                    <input type="checkbox" class="checklist-box" data-id="@item.Id" />
+                    <span>
+                        <strong>@item.Title</strong>
+                        <span class="muted">@item.Detail</span>
+                    </span>
+                </label>
+            }
+        </section>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/checklist.js" asp-append-version="true"></script>
+}

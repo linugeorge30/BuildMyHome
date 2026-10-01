@@ -1,0 +1,42 @@
+[
+  {
+    "id": "modern",
+    "name": "Modern",
+    "summary": "Clean lines, large quiet fields of colour, and furniture with light legs.",
+    "description": "Modern interiors favour open sight-lines, low furniture, and a restrained palette. Floors are usually timber or large-format tile. Lighting is layered: a few architectural fittings plus lamps. Colour sits in one or two stronger pieces rather than on every wall.",
+    "palette": ["#f4efe6", "#2c2a28", "#c45c26", "#7d8b74", "#9aa3ad"],
+    "paletteNames": ["Linen", "Charcoal", "Terracotta", "Sage", "Steel"],
+    "pairings": ["White oak boards", "Linen white paint", "Engineered quartz"],
+    "mood": "Calm, open, and edited."
+  },
+  {
+    "id": "traditional",
+    "name": "Traditional",
+    "summary": "Warm woods, layered textiles, and colours drawn from clay and forest.",
+    "description": "Traditional rooms accept mouldings, hung art, and furniture with a presence. Floors might be oak or limestone. Paint is seldom pure white — clay, putty, and sage sit more comfortably with brass and woven fabrics. Pattern can appear in a rug or curtains without dominating.",
+    "palette": ["#f7f1e8", "#8b6b4a", "#7d8b74", "#c4785a", "#1d2a44"],
+    "paletteNames": ["Ivory", "Walnut", "Sage", "Clay", "Ink"],
+    "pairings": ["Honed limestone", "Warm clay emulsion", "Natural granite"],
+    "mood": "Settled, hospitable, and richly textured."
+  },
+  {
+    "id": "minimalist",
+    "name": "Minimalist",
+    "summary": "Few objects, hidden storage, and a pale envelope that lets light do the work.",
+    "description": "Minimalist planning is as much about what you omit as what you buy. Surfaces are continuous; handles disappear; furniture is sparse and useful. A single material — plaster, pale timber, or polished concrete — can run across floor and bench. Colour, if used, is a quiet grey-green or a single dark plane.",
+    "palette": ["#faf8f4", "#d8cfc2", "#9a9b98", "#7d8b74", "#2c2a28"],
+    "paletteNames": ["Paper", "Putty", "Stone", "Sage", "Ink"],
+    "pairings": ["Polished concrete", "Linen white", "Engineered quartz"],
+    "mood": "Quiet, exact, and uncluttered."
+  },
+  {
+    "id": "industrial",
+    "name": "Industrial",
+    "summary": "Raw structure left visible: metal, concrete, and worn timber.",
+    "description": "Industrial interiors borrow from workshops: sealed concrete or vinyl that looks like timber, metal shelving, and darker walls that hide services. Comfort comes from textiles and warm lamps so the room does not feel like a store-room. Pair hard floors with a substantial rug in the sitting zone.",
+    "palette": ["#9a9b98", "#2c2a28", "#c45c26", "#5c6570", "#b07a3a"],
+    "paletteNames": ["Concrete", "Charcoal", "Rust", "Steel", "Timber"],
+    "pairings": ["Polished concrete", "Ink navy paint", "Cast concrete worktop"],
+    "mood": "Gritty, warm-metal, and robust."
+  }
+]

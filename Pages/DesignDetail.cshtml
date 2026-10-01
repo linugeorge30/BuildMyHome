@@ -1,0 +1,66 @@
+@page "/designs/{id}"
+@model DesignDetailModel
+@{
+    ViewData["Title"] = Model.House.Name;
+    var house = Model.House;
+}
+
+<div class="page-hero">
+    <div class="container-xl">
+        <p class="eyebrow">@house.Category · @house.TotalAreaSqm m²</p>
+        <h1>@house.Name</h1>
+        <p class="lead">@house.Tagline</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" asp-page="/Planner" asp-route-layout="@house.Id">Plan these rooms</a>
+            <a class="btn btn-ghost" asp-page="/Designs">Back to library</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-xl section">
+    <div class="detail-grid">
+        <div>
+            @await Html.PartialAsync("_FloorPlan", house)
+            <p>@house.Description</p>
+            <ul class="mini-list">
+                @foreach (var highlight in house.Highlights)
+                {
+                    <li>@highlight</li>
+                }
+            </ul>
+        </div>
+        <div>
+            <h2>Rooms and dimensions</h2>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Room</th>
+                            <th>W × L × H</th>
+                            <th>Area</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var room in house.Rooms)
+                    {
+                        var area = Math.Round(room.Width * room.Length, 1);
+                        <tr>
+                            <td>
+                                <strong>@room.Name</strong>
+                                <div class="muted">@room.Purpose</div>
+                            </td>
+                            <td>@room.Width × @room.Length × @room.Height m</td>
+                            <td>@area m²</td>
+                            <td>
+                                <a class="text-link" asp-page="/Planner" asp-route-layout="@house.Id" asp-route-room="@room.Id">Arrange furniture</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            <partial name="_Disclaimer" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+@page
+@model MaterialsModel
+@{
+    ViewData["Title"] = "Material explorer";
+    var labels = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+    {
+        ["flooring"] = "Flooring",
+        ["paint"] = "Paint",
+        ["roofing"] = "Roofing",
+        ["countertop"] = "Countertops"
+    };
+}
+
+<div class="page-hero">
+    <div class="container-xl">
+        <p class="eyebrow">Compare finishes</p>
+        <h1>Material explorer</h1>
+        <p class="lead">Appearance, maintenance, and durability for flooring, paint, roofing, and worktops. Suggested prices are typical starting points — replace them with local quotes in the budget planner.</p>
+    </div>
+</div>
+
+<div class="container-xl section">
+    <div class="filter-row" id="material-filters">
+        <button type="button" class="filter-pill active" data-category="all">All</button>
+        @foreach (var category in Model.Categories)
+        {
+            <button type="button" class="filter-pill" data-category="@category">@(labels.GetValueOrDefault(category, category))</button>
+        }
+    </div>
+
+    @foreach (var category in Model.Categories)
+    {
+        var items = Model.Materials.Where(m => m.Category == category).ToList();
+        <h2 class="category-title" data-category="@category">@(labels.GetValueOrDefault(category, category))</h2>
+        <div class="material-grid" data-category="@category">
+            @foreach (var material in items)
+            {
+                <article class="material-card" data-id="@material.Id" data-category="@material.Category">
+                    <div class="material-swatch" style="background: linear-gradient(135deg, @material.Swatch, @material.SwatchSecondary)"></div>
+                    <div class="material-body">
+                        <h3>@material.Name</h3>
+                        <p><strong>Appearance.</strong> @material.Appearance</p>
+                        <p><strong>Maintenance.</strong> @material.Maintenance</p>
+                        <p><strong>Durability.</strong> @material.Durability</p>
+                        <p class="muted">Best for: @material.BestFor</p>
+                        <div class="score-row">
+                            <span>Durability @material.DurabilityScore/10</span>
+                            <span>Easy care @material.MaintenanceEase/10</span>
+                        </div>
+                        <button type="button" class="btn btn-ghost btn-sm select-material" data-id="@material.Id" data-category="@material.Category">Use in my plan</button>
+                    </div>
+                </article>
+            }
+        </div>
+    }
+
+    <section class="panel mt-4">
+        <h2>Side-by-side</h2>
+        <p class="muted">Choose two materials of the same type to compare. Roofing is listed for appearance and upkeep only — it is not used in the interior quantity estimates.</p>
+        <div class="field-row">
+            <label>Material A
+                <select id="compare-a" class="form-select">
+                    @foreach (var material in Model.Materials)
+                    {
+                        <option value="@material.Id">@material.Name (@material.Category)</option>
+                    }
+                </select>
+            </label>
+            <label>Material B
+                <select id="compare-b" class="form-select">
+                    @foreach (var material in Model.Materials)
+                    {
+                        <option value="@material.Id">@material.Name (@material.Category)</option>
+                    }
+                </select>
+            </label>
+        </div>
+        <div id="compare-result" class="compare-result"></div>
+    </section>
+</div>
+
+@section Scripts {
+    <script>
+        window.BMH_MATERIALS = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Materials, AppJson.Camel));
+    </script>
+    <script src="~/js/materials.js" asp-append-version="true"></script>
+}

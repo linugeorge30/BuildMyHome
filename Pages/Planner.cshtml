@@ -1,0 +1,139 @@
+@page
+@using System.Text.Json
+@model PlannerModel
+@{
+    ViewData["Title"] = "Room planner";
+    var bootstrap = JsonSerializer.Serialize(new
+    {
+        furniture = Model.Furniture,
+        flooring = Model.Flooring,
+        paints = Model.Paints,
+        houses = Model.Houses.Select(h => new
+        {
+            h.Id,
+            h.Name,
+            h.Category,
+            rooms = h.Rooms
+        })
+    }, AppJson.Camel);
+}
+
+<div class="page-hero">
+    <div class="container-xl">
+        <p class="eyebrow">Standout feature</p>
+        <h1>Room planner</h1>
+        <p class="lead">Enter a room’s dimensions, place furniture on a 2D grid, choose flooring and paint, then read remaining space and a material estimate.</p>
+    </div>
+</div>
+
+<div class="container-xl section planner-page">
+    <div class="planner-layout">
+        <aside class="planner-side">
+            <section class="panel">
+                <h2>Room</h2>
+                <label>Name
+                    <input id="room-name" class="form-control" value="Living room" />
+                </label>
+                <div class="field-row">
+                    <label>Width (m)
+                        <input id="room-width" class="form-control" type="number" min="1" step="0.1" value="4.5" />
+                    </label>
+                    <label>Length (m)
+                        <input id="room-length" class="form-control" type="number" min="1" step="0.1" value="5.5" />
+                    </label>
+                    <label>Height (m)
+                        <input id="room-height" class="form-control" type="number" min="2" step="0.1" value="2.7" />
+                    </label>
+                </div>
+                <label>Load from a sample layout
+                    <select id="layout-select" class="form-select">
+                        <option value="">Custom room</option>
+                        @foreach (var house in Model.Houses)
+                        {
+                            <option value="@house.Id">@house.Name</option>
+                        }
+                    </select>
+                </label>
+                <label>Room in that layout
+                    <select id="layout-room-select" class="form-select" disabled>
+                        <option value="">Choose a room</option>
+                    </select>
+                </label>
+                <button type="button" class="btn btn-primary w-100" id="apply-room">Apply size to grid</button>
+            </section>
+
+            <section class="panel">
+                <h2>Finishes</h2>
+                <label>Flooring
+                    <select id="flooring-select" class="form-select">
+                        @foreach (var material in Model.Flooring)
+                        {
+                            <option value="@material.Id" data-swatch="@material.Swatch">@material.Name</option>
+                        }
+                    </select>
+                </label>
+                <label>Paint
+                    <select id="paint-select" class="form-select">
+                        @foreach (var material in Model.Paints)
+                        {
+                            <option value="@material.Id" data-swatch="@material.Swatch">@material.Name</option>
+                        }
+                    </select>
+                </label>
+            </section>
+
+            <section class="panel">
+                <h2>Furniture</h2>
+                <p class="muted">Select a piece, then click the grid to place it. Drag to move. Leave about 0.8 m for walkways if you can.</p>
+                <div class="furniture-palette" id="furniture-palette">
+                    @foreach (var item in Model.Furniture)
+                    {
+                        <button type="button" class="furniture-chip" data-id="@item.Id" style="--chip:@item.Color">
+                            @item.Name
+                            <small>@item.Width × @item.Depth m</small>
+                        </button>
+                    }
+                </div>
+            </section>
+        </aside>
+
+        <section class="planner-board-wrap">
+            <div class="board-toolbar">
+                <button type="button" class="btn btn-ghost btn-sm" id="rotate-item">Rotate selected</button>
+                <button type="button" class="btn btn-ghost btn-sm" id="delete-item">Remove selected</button>
+                <button type="button" class="btn btn-ghost btn-sm" id="clear-furniture">Clear furniture</button>
+            </div>
+            <div id="room-board" class="room-board" tabindex="0" aria-label="Room planning grid"></div>
+            <p class="muted" id="board-hint">Click the grid to place the selected furniture. Pieces cannot sit outside the walls.</p>
+        </section>
+
+        <aside class="planner-side">
+            <section class="panel estimate-card">
+                <h2>Visual plan &amp; estimate</h2>
+                <ul class="stat-list">
+                    <li>Floor area <strong id="stat-floor">—</strong></li>
+                    <li>Furniture footprint <strong id="stat-furniture">—</strong></li>
+                    <li>Space remaining <strong id="stat-remain">—</strong></li>
+                    <li>Wall area (paint) <strong id="stat-wall">—</strong></li>
+                    <li>Paint (2 coats) <strong id="stat-paint">—</strong></li>
+                    <li>Flooring with 10% waste <strong id="stat-waste">—</strong></li>
+                    <li>60×60 cm tiles <strong id="stat-tiles">—</strong></li>
+                    <li>Flooring packs (2.16 m²) <strong id="stat-packs">—</strong></li>
+                </ul>
+                <p class="warn" id="overlap-warn" hidden>Some furniture overlaps. Remaining space is still counted by footprint, so allow extra circulation.</p>
+                <button type="button" class="btn btn-primary w-100" id="save-room">Save this room to my plan</button>
+                <a class="btn btn-ghost w-100 mt-2" asp-page="/Report">Open report</a>
+            </section>
+            <section class="panel">
+                <h2>Saved rooms</h2>
+                <div id="saved-rooms" class="saved-rooms"></div>
+            </section>
+        </aside>
+    </div>
+</div>
+
+<script type="application/json" id="planner-bootstrap">@Html.Raw(bootstrap)</script>
+
+@section Scripts {
+    <script src="~/js/planner.js" asp-append-version="true"></script>
+}

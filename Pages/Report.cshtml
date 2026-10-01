@@ -1,0 +1,34 @@
+@page
+@model ReportModel
+@{
+    ViewData["Title"] = "Planning report";
+}
+
+<div class="page-hero no-print">
+    <div class="container-xl">
+        <p class="eyebrow">Take a copy with you</p>
+        <h1>Downloadable report</h1>
+        <p class="lead">This page reads the plan stored in your browser. Print it, download an HTML file from the server, or export JSON.</p>
+        <div class="hero-actions">
+            <button type="button" class="btn btn-primary" id="print-report">Print / save as PDF</button>
+            <button type="button" class="btn btn-ghost" id="download-html">Download HTML report</button>
+            <button type="button" class="btn btn-ghost" id="download-json">Export JSON</button>
+        </div>
+    </div>
+</div>
+
+<div class="container-xl section report-page">
+    <header class="report-head">
+        <label class="no-print">Project name
+            <input id="project-name" class="form-control" value="My home plan" />
+        </label>
+        <h2 id="report-title">My home plan</h2>
+        <p class="muted" id="report-meta"></p>
+    </header>
+    <div id="report-body"></div>
+    <partial name="_Disclaimer" />
+</div>
+
+@section Scripts {
+    <script src="~/js/report.js" asp-append-version="true"></script>
+}

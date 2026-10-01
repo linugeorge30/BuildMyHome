@@ -1,0 +1,51 @@
+@page
+@model DesignsModel
+@{
+    ViewData["Title"] = "House design library";
+    var filters = new (string Id, string Label)[]
+    {
+        ("all", "All homes"),
+        ("studio", "Studio"),
+        ("1-bedroom", "1-bedroom"),
+        ("2-bedroom", "2-bedroom"),
+        ("larger", "Larger homes")
+    };
+}
+
+<div class="page-hero">
+    <div class="container-xl">
+        <p class="eyebrow">Design library</p>
+        <h1>Sample house layouts</h1>
+        <p class="lead">Schematic plans with room sizes you can load into the planner. These are interior planning diagrams, not structural drawings.</p>
+    </div>
+</div>
+
+<div class="container-xl section">
+    <div class="filter-row">
+        @foreach (var filter in filters)
+        {
+            <a class="filter-pill @(Model.Category == filter.Id ? "active" : "")"
+               asp-page="/Designs" asp-route-category="@(filter.Id == "all" ? null : filter.Id)">@filter.Label</a>
+        }
+    </div>
+    <div class="card-grid">
+        @foreach (var house in Model.Houses)
+        {
+            <article class="design-card">
+                @await Html.PartialAsync("_FloorPlan", house)
+                <div class="design-card-body">
+                    <p class="tag">@house.Category · @house.Bedrooms bed · @house.Bathrooms bath · @house.TotalAreaSqm m²</p>
+                    <h3>@house.Name</h3>
+                    <p>@house.Tagline</p>
+                    <ul class="mini-list">
+                        @foreach (var highlight in house.Highlights)
+                        {
+                            <li>@highlight</li>
+                        }
+                    </ul>
+                    <a class="btn btn-primary btn-sm" asp-page="/DesignDetail" asp-route-id="@house.Id">View rooms</a>
+                </div>
+            </article>
+        }
+    </div>
+</div>

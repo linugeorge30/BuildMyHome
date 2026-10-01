@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewData["Title"] ?? "Build My Home") — Build My Home</title>
+    <meta name="description" content="Interactive house planning: sample layouts, a 2D room planner, material comparisons, quantity estimates, and a downloadable interior plan. No account required." />
+    <script type="importmap"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-xl">
+                <a class="navbar-brand" asp-page="/Index">
+                    <span class="brand-mark" aria-hidden="true"></span>
+                    Build My Home
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNav" aria-controls="siteNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="siteNav">
+                    @{
+                        var currentPage = ViewContext.RouteData.Values["page"]?.ToString();
+                    }
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                        <li class="nav-item"><a class="nav-link @(currentPage == "/Designs" || currentPage == "/DesignDetail" ? "active" : null)" asp-page="/Designs">Designs</a></li>
+                        <li class="nav-item"><a class="nav-link @(currentPage == "/Planner" ? "active" : null)" asp-page="/Planner">Room planner</a></li>
+                        <li class="nav-item"><a class="nav-link @(currentPage == "/Materials" ? "active" : null)" asp-page="/Materials">Materials</a></li>
+                        <li class="nav-item"><a class="nav-link @(currentPage == "/Calculators" ? "active" : null)" asp-page="/Calculators">Calculators</a></li>
+                        <li class="nav-item"><a class="nav-link @(currentPage == "/Budget" ? "active" : null)" asp-page="/Budget">Budget</a></li>
+                        <li class="nav-item"><a class="nav-link @(currentPage == "/Styles" ? "active" : null)" asp-page="/Styles">Styles</a></li>
+                        <li class="nav-item"><a class="nav-link @(currentPage == "/Checklist" ? "active" : null)" asp-page="/Checklist">Checklist</a></li>
+                        <li class="nav-item"><a class="nav-link @(currentPage == "/Report" ? "active" : null)" asp-page="/Report">Report</a></li>
+                        <li class="nav-item dropdown">
+                            <button class="nav-link dropdown-toggle plan-toggle" data-bs-toggle="dropdown" aria-expanded="false">My plan</button>
+                            <ul class="dropdown-menu dropdown-menu-end plan-menu">
+                                <li><span class="dropdown-item-text" id="plan-status">No rooms saved yet</span></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><button class="dropdown-item" type="button" id="export-plan">Export plan JSON</button></li>
+                                <li>
+                                    <label class="dropdown-item" for="import-plan">Import plan JSON</label>
+                                    <input type="file" id="import-plan" accept="application/json,.json" hidden />
+                                </li>
+                                <li><button class="dropdown-item text-danger" type="button" id="clear-plan">Clear plan</button></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container-xl">
+            <div class="row g-4">
+                <div class="col-md-5">
+                    <strong>Build My Home</strong>
+                    <p class="mb-0">Interior layouts, material comparisons, and approximate quantities. Structural construction plans need a licensed professional.</p>
+                </div>
+                <div class="col-md-3">
+                    <a asp-page="/Planner">Room planner</a><br />
+                    <a asp-page="/Report">Download report</a><br />
+                    <a asp-page="/Privacy">Privacy</a>
+                </div>
+                <div class="col-md-4 muted">
+                    Plans stay in this browser unless you export a JSON copy. No database and no account.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/plan-store.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

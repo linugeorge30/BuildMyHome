@@ -1,0 +1,161 @@
+[
+  {
+    "id": "studio-compact",
+    "name": "Compact Studio",
+    "category": "studio",
+    "tagline": "A 32 m² lock-up with a sleeping nook and galley kitchen.",
+    "description": "A tightly planned studio for one person or a couple. The open living-sleep zone faces the longest wall of windows, while a galley kitchen and bathroom sit as a service strip. Furniture has to earn its place: a sofa-bed or platform bed, a compact dining table, and storage that doubles as a room divider.",
+    "totalAreaSqm": 32,
+    "planWidth": 8,
+    "planDepth": 4,
+    "bedrooms": 0,
+    "bathrooms": 1,
+    "highlights": ["Galley kitchen", "Sleeping alcove", "One wet room"],
+    "rooms": [
+      { "id": "open-living", "name": "Living & sleep", "purpose": "Daytime living and a queen or sofa-bed along the inner wall.", "width": 5.5, "length": 4, "height": 2.6, "x": 0, "y": 0, "accent": "#d4b483" },
+      { "id": "kitchenette", "name": "Kitchenette", "purpose": "Two-burner cooktop, fridge, and 2.2 m of worktop.", "width": 2.5, "length": 2.2, "height": 2.6, "x": 5.5, "y": 0, "accent": "#c45c26" },
+      { "id": "bath", "name": "Bathroom", "purpose": "Shower, basin, and WC packed into a wet room.", "width": 2.5, "length": 1.8, "height": 2.6, "x": 5.5, "y": 2.2, "accent": "#7a8b7a" }
+    ]
+  },
+  {
+    "id": "studio-garden",
+    "name": "Garden Studio",
+    "category": "studio",
+    "tagline": "A 40 m² studio with a dining bay and outdoor threshold.",
+    "description": "Slightly larger than a lock-up studio, this plan adds a distinct dining bay and a utility cupboard. The living zone can hold a proper sofa and a separate bed without blocking circulation. Best when a courtyard or balcony sits on the long elevation.",
+    "totalAreaSqm": 40,
+    "planWidth": 8,
+    "planDepth": 5,
+    "bedrooms": 0,
+    "bathrooms": 1,
+    "highlights": ["Dining bay", "Utility cupboard", "Garden door"],
+    "rooms": [
+      { "id": "living", "name": "Living", "purpose": "Sofa, media, and a reading chair facing the garden door.", "width": 4.5, "length": 5, "height": 2.7, "x": 0, "y": 0, "accent": "#d4b483" },
+      { "id": "sleep-dining", "name": "Sleep & dining", "purpose": "Bed or sofa-bed plus a four-person table.", "width": 3.5, "length": 3.2, "height": 2.7, "x": 4.5, "y": 0, "accent": "#c4a35a" },
+      { "id": "kitchen", "name": "Kitchen", "purpose": "L-shaped kitchen with fridge and pantry cupboard.", "width": 2, "length": 1.8, "height": 2.7, "x": 4.5, "y": 3.2, "accent": "#c45c26" },
+      { "id": "bath", "name": "Bathroom", "purpose": "Shower room with storage niche.", "width": 1.5, "length": 1.8, "height": 2.7, "x": 6.5, "y": 3.2, "accent": "#7a8b7a" }
+    ]
+  },
+  {
+    "id": "onebed-city",
+    "name": "One-Bedroom City Flat",
+    "category": "1-bedroom",
+    "tagline": "A 48 m² apartment with a private bedroom and open kitchen.",
+    "description": "A classic one-bedroom plan: private sleep, a combined living-kitchen, and a bathroom off the entry. The living room is large enough for a three-seat sofa and a small dining table. The bedroom takes a queen bed with two nightstands if the wardrobe is kept to 1.2 m.",
+    "totalAreaSqm": 48,
+    "planWidth": 8,
+    "planDepth": 6,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "highlights": ["Separate bedroom", "Open kitchen", "Entry cupboard"],
+    "rooms": [
+      { "id": "living", "name": "Living & kitchen", "purpose": "Open-plan living with a kitchen run along one wall.", "width": 5, "length": 6, "height": 2.7, "x": 0, "y": 0, "accent": "#d4b483" },
+      { "id": "bedroom", "name": "Bedroom", "purpose": "Queen bed, wardrobe, and a desk if needed.", "width": 3, "length": 3.6, "height": 2.7, "x": 5, "y": 0, "accent": "#8b6b4a" },
+      { "id": "bath", "name": "Bathroom", "purpose": "Full bath with shower over tub or a generous shower.", "width": 3, "length": 2.4, "height": 2.7, "x": 5, "y": 3.6, "accent": "#7a8b7a" }
+    ]
+  },
+  {
+    "id": "onebed-courtyard",
+    "name": "One-Bedroom Courtyard Home",
+    "category": "1-bedroom",
+    "tagline": "A 58 m² home with a study nook and indoor-outdoor living.",
+    "description": "Built around a small courtyard or patio. The living room is deeper, a study nook sits off the entry, and the kitchen is a proper U-shape rather than a single run. Suitable as a first home or a downsizer when outdoor space matters as much as interior area.",
+    "totalAreaSqm": 58,
+    "planWidth": 10,
+    "planDepth": 6,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "highlights": ["Study nook", "U-kitchen", "Patio living"],
+    "rooms": [
+      { "id": "living", "name": "Living", "purpose": "Deep living room opening to a patio.", "width": 4.5, "length": 6, "height": 2.8, "x": 0, "y": 0, "accent": "#d4b483" },
+      { "id": "kitchen", "name": "Kitchen & dining", "purpose": "U-kitchen with a four-to-six seat table.", "width": 3.2, "length": 6, "height": 2.8, "x": 4.5, "y": 0, "accent": "#c45c26" },
+      { "id": "bedroom", "name": "Bedroom", "purpose": "Queen bedroom with wardrobe wall.", "width": 2.3, "length": 3.8, "height": 2.8, "x": 7.7, "y": 0, "accent": "#8b6b4a" },
+      { "id": "bath", "name": "Bathroom", "purpose": "Bathroom plus linen.", "width": 2.3, "length": 2.2, "height": 2.8, "x": 7.7, "y": 3.8, "accent": "#7a8b7a" }
+    ]
+  },
+  {
+    "id": "twobed-cottage",
+    "name": "Two-Bedroom Family Cottage",
+    "category": "2-bedroom",
+    "tagline": "A 75 m² cottage with a second bedroom that can be a nursery or guest room.",
+    "description": "A practical family starter: living at the front, kitchen-dining in the middle, bedrooms and bath at the quiet end. The second bedroom fits a single bed or a cot and a small wardrobe. Circulation is a short hall rather than rooms opening through each other.",
+    "totalAreaSqm": 75,
+    "planWidth": 10,
+    "planDepth": 7.5,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "highlights": ["Separate hall", "Family living", "Guest or nursery"],
+    "rooms": [
+      { "id": "living", "name": "Living", "purpose": "Family living with space for a sofa and play.", "width": 4.5, "length": 4.5, "height": 2.7, "x": 0, "y": 0, "accent": "#d4b483" },
+      { "id": "kitchen", "name": "Kitchen & dining", "purpose": "Kitchen with dining for six.", "width": 5.5, "length": 4.5, "height": 2.7, "x": 4.5, "y": 0, "accent": "#c45c26" },
+      { "id": "bedroom-1", "name": "Main bedroom", "purpose": "Queen bedroom with wardrobe.", "width": 3.6, "length": 3, "height": 2.7, "x": 0, "y": 4.5, "accent": "#8b6b4a" },
+      { "id": "bedroom-2", "name": "Second bedroom", "purpose": "Single or twin, nursery, or office.", "width": 3, "length": 3, "height": 2.7, "x": 3.6, "y": 4.5, "accent": "#a98467" },
+      { "id": "bath", "name": "Bathroom", "purpose": "Family bathroom with bath and separate WC if preferred.", "width": 3.4, "length": 3, "height": 2.7, "x": 6.6, "y": 4.5, "accent": "#7a8b7a" }
+    ]
+  },
+  {
+    "id": "twobed-open",
+    "name": "Two-Bedroom Open Plan",
+    "category": "2-bedroom",
+    "tagline": "An 85 m² plan with a wide living-kitchen and two equal bedrooms.",
+    "description": "Favoured in newer apartments: a wide open living-kitchen, a utility cupboard, and two similar bedrooms so neither feels like a leftover. The living span can take a dining table without crowding the sofa. A second bathroom is optional if you split the wet area later.",
+    "totalAreaSqm": 85,
+    "planWidth": 12,
+    "planDepth": 7.2,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "highlights": ["Wide living", "Two similar bedrooms", "Second bath"],
+    "rooms": [
+      { "id": "living", "name": "Living, kitchen & dining", "purpose": "Open social room spanning the front of the home.", "width": 7.5, "length": 4.4, "height": 2.8, "x": 0, "y": 0, "accent": "#d4b483" },
+      { "id": "bedroom-1", "name": "Bedroom one", "purpose": "Queen bedroom with wardrobe.", "width": 3.8, "length": 3.6, "height": 2.8, "x": 0, "y": 4.4, "accent": "#8b6b4a" },
+      { "id": "bedroom-2", "name": "Bedroom two", "purpose": "Queen or twin bedroom.", "width": 3.7, "length": 3.6, "height": 2.8, "x": 3.8, "y": 4.4, "accent": "#a98467" },
+      { "id": "bath-1", "name": "Bathroom", "purpose": "Main bathroom.", "width": 2.2, "length": 2.8, "height": 2.8, "x": 7.5, "y": 0, "accent": "#7a8b7a" },
+      { "id": "bath-2", "name": "Ensuite / WC", "purpose": "Second bath or powder room.", "width": 2.3, "length": 1.6, "height": 2.8, "x": 9.7, "y": 0, "accent": "#8fa08f" },
+      { "id": "utility", "name": "Utility", "purpose": "Laundry and storage.", "width": 2.3, "length": 2.8, "height": 2.8, "x": 9.7, "y": 1.6, "accent": "#b7a48a" }
+    ]
+  },
+  {
+    "id": "threebed-family",
+    "name": "Three-Bedroom Family Home",
+    "category": "larger",
+    "tagline": "A 120 m² family house with a lounge, kitchen-diner, and three bedrooms.",
+    "description": "A conventional family arrangement: public rooms together, bedrooms grouped, and a utility off the kitchen. The lounge can be quieter than the kitchen-diner. The third bedroom works as a child room or a dedicated office. Quantities on this plan are a useful starting point for a whole-house refresh.",
+    "totalAreaSqm": 120,
+    "planWidth": 12,
+    "planDepth": 10,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "highlights": ["Lounge plus diner", "Utility", "Three bedrooms"],
+    "rooms": [
+      { "id": "lounge", "name": "Lounge", "purpose": "Quiet sitting room.", "width": 4.5, "length": 5, "height": 2.7, "x": 0, "y": 0, "accent": "#d4b483" },
+      { "id": "kitchen", "name": "Kitchen & dining", "purpose": "Family kitchen with dining table and island option.", "width": 7.5, "length": 5, "height": 2.7, "x": 4.5, "y": 0, "accent": "#c45c26" },
+      { "id": "bedroom-1", "name": "Main bedroom", "purpose": "Main bedroom with ensuite access.", "width": 4, "length": 5, "height": 2.7, "x": 0, "y": 5, "accent": "#8b6b4a" },
+      { "id": "bedroom-2", "name": "Bedroom two", "purpose": "Double bedroom.", "width": 3.5, "length": 3.5, "height": 2.7, "x": 4, "y": 5, "accent": "#a98467" },
+      { "id": "bedroom-3", "name": "Bedroom three", "purpose": "Child room or office.", "width": 3.2, "length": 3.5, "height": 2.7, "x": 7.5, "y": 5, "accent": "#c4a35a" },
+      { "id": "bath", "name": "Family bathroom", "purpose": "Family bath.", "width": 1.3, "length": 3.5, "height": 2.7, "x": 10.7, "y": 5, "accent": "#7a8b7a" },
+      { "id": "utility", "name": "Utility / hall", "purpose": "Laundry, coats, and circulation.", "width": 12, "length": 1.5, "height": 2.7, "x": 0, "y": 8.5, "accent": "#b7a48a" }
+    ]
+  },
+  {
+    "id": "fourbed-villa",
+    "name": "Four-Bedroom Villa Layout",
+    "category": "larger",
+    "tagline": "A 160 m² villa-style plan with a formal lounge, family kitchen, and four bedrooms.",
+    "description": "A larger household layout for comparing finishes across many rooms. Public rooms sit on the garden side; bedrooms occupy a quieter wing. Use this plan to test a whole-house palette — flooring through the social rooms, paint schedules per bedroom, and a realistic tile count for two bathrooms. Always have a professional review any structural or services work.",
+    "totalAreaSqm": 160,
+    "planWidth": 16,
+    "planDepth": 10,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "highlights": ["Formal lounge", "Family kitchen", "Four bedrooms"],
+    "rooms": [
+      { "id": "lounge", "name": "Lounge", "purpose": "Formal sitting room.", "width": 5, "length": 5.5, "height": 2.9, "x": 0, "y": 0, "accent": "#d4b483" },
+      { "id": "kitchen", "name": "Kitchen, dining & family", "purpose": "Open family kitchen and dining.", "width": 7, "length": 5.5, "height": 2.9, "x": 5, "y": 0, "accent": "#c45c26" },
+      { "id": "study", "name": "Study", "purpose": "Desk room or guest overflow.", "width": 4, "length": 5.5, "height": 2.9, "x": 12, "y": 0, "accent": "#8fa08f" },
+      { "id": "bedroom-1", "name": "Main bedroom", "purpose": "Main suite with space for seating.", "width": 4.5, "length": 4.5, "height": 2.8, "x": 0, "y": 5.5, "accent": "#8b6b4a" },
+      { "id": "bedroom-2", "name": "Bedroom two", "purpose": "Double bedroom.", "width": 3.5, "length": 4.5, "height": 2.8, "x": 4.5, "y": 5.5, "accent": "#a98467" },
+      { "id": "bedroom-3", "name": "Bedroom three", "purpose": "Double or twin.", "width": 3.5, "length": 4.5, "height": 2.8, "x": 8, "y": 5.5, "accent": "#c4a35a" },
+      { "id": "bedroom-4", "name": "Bedroom four", "purpose": "Child room or guests.", "width": 4.5, "length": 4.5, "height": 2.8, "x": 11.5, "y": 5.5, "accent": "#b08968" }
+    ]
+  }
+]

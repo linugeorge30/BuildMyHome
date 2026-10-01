@@ -1,0 +1,37 @@
+@page
+@model StylesModel
+@{
+    ViewData["Title"] = "Style gallery";
+}
+
+<div class="page-hero">
+    <div class="container-xl">
+        <p class="eyebrow">Colour palettes</p>
+        <h1>Style gallery</h1>
+        <p class="lead">Four interior directions. Attach one to your plan so the report records the palette you are aiming for.</p>
+    </div>
+</div>
+
+<div class="container-xl section">
+    <div class="style-gallery">
+        @foreach (var style in Model.Styles)
+        {
+            <article class="style-card">
+                <div class="palette tall">
+                    @for (var i = 0; i < style.Palette.Count; i++)
+                    {
+                        <span style="background:@style.Palette[i]" title="@style.PaletteNames.ElementAtOrDefault(i)"></span>
+                    }
+                </div>
+                <div>
+                    <h2>@style.Name</h2>
+                    <p class="mood">@style.Mood</p>
+                    <p>@style.Description</p>
+                    <p><strong>Palette:</strong> @string.Join(" · ", style.PaletteNames)</p>
+                    <p><strong>Pairs well with:</strong> @string.Join(", ", style.Pairings)</p>
+                    <button type="button" class="btn btn-primary apply-style" data-id="@style.Id" data-name="@style.Name">Use this style</button>
+                </div>
+            </article>
+        }
+    </div>
+</div>

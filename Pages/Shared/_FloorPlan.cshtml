@@ -1,0 +1,23 @@
+@model HouseLayout
+@{
+    var width = Model.PlanWidth <= 0 ? 8 : Model.PlanWidth;
+    var depth = Model.PlanDepth <= 0 ? 6 : Model.PlanDepth;
+}
+<div class="floorplan">
+    <svg viewBox="0 0 @width @depth" role="img" aria-label="Schematic floor plan for @Model.Name">
+        <rect x="0" y="0" width="@width" height="@depth" class="floorplan-shell" />
+        @foreach (var room in Model.Rooms)
+        {
+            var cx = room.X + room.Width / 2;
+            var cy = room.Y + room.Length / 2;
+            var font = Math.Min(0.38m, Math.Min(room.Width, room.Length) / 6m + 0.22m);
+            <g>
+                <rect x="@room.X" y="@room.Y" width="@room.Width" height="@room.Length"
+                      fill="@room.Accent" fill-opacity="0.42" stroke="#1c1917" stroke-width="0.05" />
+                <text x="@cx" y="@cy" text-anchor="middle" dominant-baseline="middle"
+                      font-size="@font" fill="#1c1917">@room.Name</text>
+            </g>
+        }
+    </svg>
+    <p class="floorplan-scale">@width m × @depth m schematic · not a construction drawing</p>
+</div>
