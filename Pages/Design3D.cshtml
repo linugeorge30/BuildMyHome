@@ -1,0 +1,52 @@
+@page "/designs/{id}/3d"
+@using System.Text.Json
+@model Design3DModel
+@{
+    ViewData["Title"] = Model.House.Name + " in 3D";
+    var house = Model.House;
+    var bootstrap = JsonSerializer.Serialize(house, AppJson.Camel);
+}
+
+<div class="page-hero">
+    <div class="container-xl">
+        <p class="eyebrow">3D layout preview</p>
+        <h1>@house.Name</h1>
+        <p class="lead">A schematic 3D view of this sample home. Drag to orbit, scroll to zoom. This is an interior preview, not a construction model.</p>
+        <div class="hero-actions">
+            <a class="btn btn-ghost" asp-page="/DesignDetail" asp-route-id="@house.Id">Back to rooms</a>
+            <a class="btn btn-primary" asp-page="/Planner" asp-route-layout="@house.Id">Plan these rooms</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-xl section viewer-3d-page">
+    <div class="viewer-3d-layout">
+        <div class="viewer-3d-frame">
+            <div class="viewer-3d-toolbar">
+                <button type="button" class="btn btn-ghost btn-sm" id="reset-camera">Reset view</button>
+                <span class="muted" id="viewer-hint">Drag to turn · scroll to zoom</span>
+            </div>
+            <canvas id="house-3d" aria-label="3D view of @house.Name"></canvas>
+        </div>
+        <aside class="panel">
+            <h2>Rooms</h2>
+            <p class="muted">Click a room to look toward it.</p>
+            <div class="room-legend" id="room-legend">
+                @foreach (var room in house.Rooms)
+                {
+                    <button type="button" class="legend-chip" data-room="@room.Id" style="--chip:@room.Accent">
+                        <strong>@room.Name</strong>
+                        <small>@room.Width × @room.Length × @room.Height m</small>
+                    </button>
+                }
+            </div>
+        </aside>
+    </div>
+    <partial name="_Disclaimer" />
+</div>
+
+<script type="application/json" id="house-3d-data">@Html.Raw(bootstrap)</script>
+
+@section Scripts {
+    <script type="module" src="~/js/design-3d.js" asp-append-version="true"></script>
+}

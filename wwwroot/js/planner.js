@@ -54,7 +54,8 @@
       width: item.rotated ? def.depth : def.width,
       depth: item.rotated ? def.width : def.depth,
       name: def.name,
-      color: def.color
+      color: def.color,
+      height: def.height > 0 ? def.height : 0.8
     };
   }
 
@@ -450,4 +451,29 @@
   writeRoomFields();
   renderBoard();
   renderSaved();
+
+  window.BMH.getPlannerSnapshot = function () {
+    readRoomFields();
+    return {
+      name: state.name,
+      width: state.width,
+      length: state.length,
+      height: state.height,
+      floorColor: swatch(els.flooring),
+      wallColor: swatch(els.paint),
+      items: state.items.map(function (item) {
+        const size = sizeOf(item);
+        return {
+          id: item.id,
+          name: size.name,
+          x: item.x,
+          y: item.y,
+          width: size.width,
+          depth: size.depth,
+          height: size.height || 0.8,
+          color: size.color || "#6b4f3a"
+        };
+      })
+    };
+  };
 })();

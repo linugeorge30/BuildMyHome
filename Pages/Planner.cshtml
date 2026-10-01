@@ -99,6 +99,7 @@
 
         <section class="planner-board-wrap">
             <div class="board-toolbar">
+                <button type="button" class="btn btn-primary btn-sm" id="open-planner-3d" data-bs-toggle="modal" data-bs-target="#planner-3d-modal">View room in 3D</button>
                 <button type="button" class="btn btn-ghost btn-sm" id="rotate-item">Rotate selected</button>
                 <button type="button" class="btn btn-ghost btn-sm" id="delete-item">Remove selected</button>
                 <button type="button" class="btn btn-ghost btn-sm" id="clear-furniture">Clear furniture</button>
@@ -122,6 +123,7 @@
                 </ul>
                 <p class="warn" id="overlap-warn" hidden>Some furniture overlaps. Remaining space is still counted by footprint, so allow extra circulation.</p>
                 <button type="button" class="btn btn-primary w-100" id="save-room">Save this room to my plan</button>
+                <button type="button" class="btn btn-ghost w-100 mt-2" data-bs-toggle="modal" data-bs-target="#planner-3d-modal">View room in 3D</button>
                 <a class="btn btn-ghost w-100 mt-2" asp-page="/Report">Open report</a>
             </section>
             <section class="panel">
@@ -134,6 +136,29 @@
 
 <script type="application/json" id="planner-bootstrap">@Html.Raw(bootstrap)</script>
 
+<div class="modal fade" id="planner-3d-modal" tabindex="-1" aria-labelledby="planner-3d-title" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content planner-3d-modal">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title" id="planner-3d-title">Room in 3D</h2>
+                    <p class="muted mb-0" id="planner-3d-caption">Your current 2D layout as a simple 3D preview.</p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="viewer-3d-toolbar">
+                    <button type="button" class="btn btn-ghost btn-sm" id="reset-planner-3d">Reset view</button>
+                    <span class="muted">Drag to turn · scroll to zoom</span>
+                </div>
+                <canvas id="planner-3d" aria-label="3D preview of the planned room"></canvas>
+                <p class="muted planner-3d-note">Furniture is shown as sized blocks matching the 2D plan. This is an interior preview, not a photoreal render.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     <script src="~/js/planner.js" asp-append-version="true"></script>
+    <script type="module" src="~/js/planner-3d.js" asp-append-version="true"></script>
 }

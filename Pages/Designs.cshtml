@@ -43,7 +43,10 @@
                             <li>@highlight</li>
                         }
                     </ul>
-                    <a class="btn btn-primary btn-sm" asp-page="/DesignDetail" asp-route-id="@house.Id">View rooms</a>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary btn-sm" asp-page="/DesignDetail" asp-route-id="@house.Id">View rooms</a>
+                        <a class="btn btn-ghost btn-sm" asp-page="/Design3D" asp-route-id="@house.Id">View in 3D</a>
+                    </div>
                 </div>
             </article>
         }

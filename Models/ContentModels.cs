@@ -66,6 +66,7 @@ public sealed class FurnitureItem
     public string Category { get; set; } = "";
     public decimal Width { get; set; }
     public decimal Depth { get; set; }
+    public decimal Height { get; set; } = 0.8m;
     public string Color { get; set; } = "#6b4f3a";
 }
 
